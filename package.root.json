@@ -1,0 +1,12 @@
+{
+  "name": "rep-assist-ai-root",
+  "private": true,
+  "description": "Copy this file to package.json in the parent folder when the repo is rep-assist-ai/rep-assist-ai (nested zip layout).",
+  "scripts": {
+    "dev": "npm --prefix rep-assist-ai-master run dev",
+    "build": "npm --prefix rep-assist-ai-master run build",
+    "start": "npm --prefix rep-assist-ai-master run start",
+    "lint": "npm --prefix rep-assist-ai-master run lint",
+    "db:seed": "npm --prefix rep-assist-ai-master run db:seed"
+  }
+}

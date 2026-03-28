@@ -19,11 +19,13 @@ Hackathon MVP: a **rep copilot** that turns structured patient context (labs, me
 
    Alternatively, paste `sql/schema.sql` then `sql/seed.sql` into the InsForge SQL editor.
 
-3. Run the app:
+3. Run the app (from this folder — the one that contains `package.json`):
 
    ```bash
    npm run dev
    ```
+
+   If your folder layout is `rep-assist-ai/rep-assist-ai/` (extra parent from a zip), either `cd` into the inner project first, or copy `package.root.json` to `../package.json` in the parent folder so `npm run dev` works there too.
 
 ## Environment variables
 
