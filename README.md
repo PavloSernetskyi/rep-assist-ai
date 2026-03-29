@@ -2,11 +2,24 @@
 
 Hackathon MVP: a **rep copilot** that turns structured patient context (labs, meds, diagnoses) plus **coverage rules** into an **eligibility / prior-auth / cost / talking-points** brief. Uses **dummy demo data** only—not a clinical system.
 
-## Stack
+## Tech stack
 
-- Next.js (App Router) + TypeScript
-- Postgres via `pg` (InsForge or any Postgres)
-- Rules-first evaluation; LLM hook stub in `src/lib/llm/generateSummary.ts`
+| Layer | Choices |
+|--------|---------|
+| **Frontend** | [Next.js](https://nextjs.org/) (App Router), React, TypeScript, Tailwind CSS |
+| **API** | Next.js Route Handlers — `/api/patients`, `/api/patients/:id`, `/api/evaluate` |
+| **Rules engine** | TypeScript modules in `src/lib/rules/` (eligibility / coverage logic) |
+| **Database driver** | [`pg`](https://node-postgres.com/) (server-side only) |
+
+### Data & B2B backend ([InsForge](https://insforge.dev/))
+
+This project uses **[InsForge](https://insforge.dev/)** as the **hosted PostgreSQL** provider (B2B backend-as-a-service): connect with a standard `DATABASE_URL`, run the SQL schema/seed, and the app reads/writes demo data through existing Next.js API routes. InsForge also offers auth, storage, edge functions, and a model gateway—this repo only wires **Postgres** for the hackathon MVP; see [InsForge docs](https://insforge.dev/) for the full platform.
+
+Compatible with **any Postgres** if you prefer to swap the connection string.
+
+### AI (optional)
+
+- LLM hook stub in `src/lib/llm/generateSummary.ts` — can be pointed at InsForge **Model Gateway** or another provider later without changing rule output facts.
 
 ## Setup
 
@@ -62,8 +75,7 @@ Frontend should call the API routes only—no direct DB access in the browser.
 
 ## Next steps
 
-- Wire InsForge model gateway in `src/lib/llm/generateSummary.ts` to polish summary/talking points without changing facts.
-- Build patient list, detail, and evaluation cards against the JSON above.
+- Wire InsForge [Model Gateway](https://insforge.dev/) (or another model API) in `src/lib/llm/generateSummary.ts` to polish summary/talking points without changing facts.
 
 ## Learn More
 
